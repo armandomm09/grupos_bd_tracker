@@ -47,7 +47,7 @@ def sendForm():
     url = 'http://10.50.84.212:4000/api/person'
     person = {
     "name": str(name),
-    "birthday": int(2345678), # int(time.mktime(birthday.timetuple())),
+    "birthday": int(time.mktime(birthday.timetuple())),
     "email": str(email),
     "insta": str(instagram),
     "telephone": str(cellphone["number"]),
@@ -56,9 +56,15 @@ def sendForm():
     try:
         x = requests.post(url, json=person)
     except requests.exceptions.RequestException as e:
+        st.toast("Upps sorry we had a problem, try again later", icon="❌")
+
         print(e)
+    
+    if x.status_code != 201: 
+        st.toast("Upps sorry we had a problem, try again later", icon="❌")
 
     print(x.status_code)
+    st.toast("Thankss, I'll remind you your bff's birthday", icon="✅")
 
 st.button("Submit", on_click=sendForm)
 
