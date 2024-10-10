@@ -36,7 +36,7 @@ info = st.text_area("Fun fact or smth", help="")
 
 ######### BIRTHDAY
 st.markdown("### And your birthdate")
-birthday = st.date_input("Duhh 👶")
+birthday = st.date_input("Duhh 👶", min_value=datetime.date(1950, 1, 1))
 
 st.text("")
 st.text("")
