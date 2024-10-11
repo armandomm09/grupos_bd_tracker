@@ -44,7 +44,7 @@ st.text("")
 
 def sendForm():
     
-    url = 'http://10.50.84.212:4000/api/person'
+    url = 'http://cdasanjose.myqnapcloud.com/api/person'
     person = {
     "name": str(name),
     "birthday": int(time.mktime(birthday.timetuple())),
@@ -54,10 +54,9 @@ def sendForm():
     "info": str(info)
     }
     try:
-        x = requests.post(url, json=person)
+        x = requests.post(url, json=person, timeout=30)
     except requests.exceptions.RequestException as e:
         st.toast("Upps sorry we had a problem, try again later", icon="❌")
-
         print(e)
     
     if x.status_code != 201: 
